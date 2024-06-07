@@ -4,25 +4,28 @@ defmodule WordLadder do
   """
   alias WordLadder.Core
   alias WordLadder.Server
-  alias WordLadder.Validator
 
-  @spec start() :: Core.Ladder.t()
+  @spec start() :: tuple()
   def start() do
     start_server()
   end
 
-  @spec make_guess(Core.Ladder.t(), String.t()) :: Core.Ladder.t()
-  def make_guess(%Core.Ladder{} = ladder, word) do
-    if Validator.valid_move?(ladder, word) do
-      Server.make_guess(word)
-    else
-      IO.puts("Invalid move")
-      ladder
+  @spec make_guess(String.t()) :: Core.Ladder.t()
+  def make_guess(word) do
+    case Server.make_guess(word) do
+      {:error, reason} ->
+        IO.puts(reason)
+        IO.puts(show())
+
+      ladder ->
+        ladder
     end
   end
 
-  @spec show(Core.Ladder.t()) :: String.t()
-  def show(%Core.Ladder{} = ladder), do: Core.show(ladder)
+  @spec show() :: String.t()
+  def show() do
+    Server.show()
+  end
 
   defp start_server(), do: Server.start_link(Core.new())
 end

@@ -44,5 +44,6 @@ defmodule WordLadder.Core do
     word_list
     |> Stream.drop(:rand.uniform(Enum.count(word_list)) - 1)
     |> Enum.take(1)
+    |> hd()
   end
 end
