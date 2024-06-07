@@ -35,8 +35,10 @@ defmodule WordLadder.Core do
     %Ladder{core | word_list: [word | word_list]}
   end
 
-  def show(%Ladder{start_word: start_word, end_word: end_word, word_list: word_list}),
-    do: "#{start_word} #{word_list |> Enum.reverse() |> Enum.join(" ")} #{end_word}"
+  def show(%Ladder{} = ladder), do: words(ladder) |> Enum.join(" -> ")
+
+  defp words(%Ladder{start_word: first, end_word: last, word_list: middle}),
+    do: [first | Enum.reverse(middle)] ++ [last]
 
   defp random_word(word_list) do
     word_list
