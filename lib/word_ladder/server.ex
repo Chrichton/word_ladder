@@ -5,6 +5,7 @@ defmodule WordLadder.Server do
   # Client API
   def start_link(%Ladder{} = ladder) do
     GenServer.start_link(__MODULE__, ladder, name: __MODULE__)
+    ladder
   end
 
   def make_guess(word) do
