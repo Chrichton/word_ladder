@@ -2,7 +2,7 @@ defmodule WordLadder do
   @moduledoc """
   Documentation for `WordLadder`.
   """
-  alias WordLadder.Core
+  alias WordLadder.Ladder
   alias WordLadder.Server
 
   @spec start() :: tuple()
@@ -10,7 +10,7 @@ defmodule WordLadder do
     start_server()
   end
 
-  @spec make_guess(String.t()) :: Core.Ladder.t()
+  @spec make_guess(String.t()) :: Ladder.t()
   def make_guess(word) do
     case Server.make_guess(word) do
       {:error, reason} ->
@@ -27,5 +27,5 @@ defmodule WordLadder do
     Server.show()
   end
 
-  defp start_server(), do: Server.start_link(Core.new())
+  defp start_server(), do: Server.start_link(Ladder.new())
 end

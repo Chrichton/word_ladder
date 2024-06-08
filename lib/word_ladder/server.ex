@@ -1,7 +1,7 @@
 defmodule WordLadder.Server do
   use GenServer
-  alias WordLadder.Core
-  alias WordLadder.Core.Ladder
+
+  alias WordLadder.Ladder
   alias WordLadder.Validator
 
   # Client API
@@ -36,6 +36,6 @@ defmodule WordLadder.Server do
 
   @impl true
   def handle_call(:show, _from, state) do
-    {:reply, Core.show(state), state}
+    {:reply, Ladder.show(state), state}
   end
 end

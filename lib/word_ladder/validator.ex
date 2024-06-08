@@ -1,5 +1,5 @@
 defmodule WordLadder.Validator do
-  alias WordLadder.Core.Ladder
+  alias WordLadder.Ladder
 
   def valid_move?(%Ladder{start_word: start_word, word_list: []}, guessed_word),
     do: difference(start_word, guessed_word) == 1

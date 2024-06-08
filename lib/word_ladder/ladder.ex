@@ -1,13 +1,13 @@
-defmodule WordLadder.Core do
-  defmodule Ladder do
-    defstruct start_word: "", end_word: "", word_list: []
+defmodule WordLadder.Ladder do
+  defstruct start_word: "", end_word: "", word_list: []
 
-    @type t :: %__MODULE__{
-            start_word: String.t(),
-            end_word: String.t(),
-            word_list: [String.t()]
-          }
-  end
+  @type t :: %__MODULE__{
+          start_word: String.t(),
+          end_word: String.t(),
+          word_list: [String.t()]
+        }
+
+  alias WordLadder.Ladder
 
   @words ~w(ant baboon badger bat bear beaver camel cat clam cobra cougar
     coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk
