@@ -16,14 +16,13 @@ defmodule WordLadder.Server do
   end
 
   def start_link({name, %Ladder{} = ladder}) do
-    IO.inspect(ladder, label: "ladder")
-    IO.inspect(name, label: "name")
     GenServer.start_link(__MODULE__, ladder, name: name)
   end
 
   def start_child(name) do
-    child_spec =
-      Supervisor.child_spec({Server, {name, Ladder.new()}}, id: {Server, name})
+    # child_spec =
+    #   Supervisor.child_spec({Server, {name, Ladder.new()}}, id: {Server, name})
+    #   DynamicSupervisor.start_child(:dsup, {Server, {name, Ladder.new()}})
 
     DynamicSupervisor.start_child(:dsup, {Server, {name, Ladder.new()}})
   end
