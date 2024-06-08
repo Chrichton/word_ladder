@@ -1,7 +1,8 @@
 defmodule WordLadder do
   @moduledoc """
-  Documentation for `WordLadder`.
+  The game `WordLadder`.
   """
+
   alias WordLadder.Ladder
   alias WordLadder.Server
 

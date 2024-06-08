@@ -1,4 +1,8 @@
 defmodule WordLadder.Validator do
+  @moduledoc """
+  Validator for `WordLadder`.
+  """
+
   alias WordLadder.Ladder
 
   def valid_move?(%Ladder{start_word: start_word, word_list: []}, guessed_word),

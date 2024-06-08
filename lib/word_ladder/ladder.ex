@@ -1,5 +1,9 @@
 defmodule WordLadder.Ladder do
-  defstruct start_word: "", end_word: "", word_list: []
+  @moduledoc """
+  Functional Core for `WordLadder`.
+  """
+  @enforce_keys [:start_word, :end_word, :word_list]
+  defstruct [:start_word, :end_word, :word_list]
 
   @type t :: %__MODULE__{
           start_word: String.t(),
@@ -9,12 +13,8 @@ defmodule WordLadder.Ladder do
 
   alias WordLadder.Ladder
 
-  @words ~w(ant baboon badger bat bear beaver camel cat clam cobra cougar
-    coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk
-    iguana lizard llama mole monkey moose mouse mule newt otter owl panda
-    parrot pigeon python rabbit ram rat raven rhino salmon seal shark
-    sheep skunk sloth snake spider stork swan tiger toad trout turkey
-    turtle weasel whale wolf wombat zebra)
+  @words ~w(ants bear camel cats clam crow deer dogs duck frog goat hawk
+    mole mule newt owls rams rats seal stork swan toad wolf yaks)
 
   def new() do
     start_word = random_word(@words)

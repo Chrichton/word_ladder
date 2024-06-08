@@ -1,4 +1,8 @@
 defmodule WordLadder.Server do
+  @moduledoc """
+  Server for `WordLadder`.
+  """
+
   use GenServer
 
   alias WordLadder.Ladder
