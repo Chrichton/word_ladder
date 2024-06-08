@@ -15,6 +15,7 @@ defmodule WordLadder.Server do
     GenServer.start_link(__MODULE__, ladder, name: __MODULE__)
   end
 
+  # called from start_child
   def start_link({name, %Ladder{} = ladder}) do
     GenServer.start_link(__MODULE__, ladder, name: name)
   end
