@@ -5,12 +5,21 @@ defmodule WordLadder.Server do
 
   use GenServer
 
+  alias WordLadder.Server
   alias WordLadder.Ladder
   alias WordLadder.Validator
 
   # Client API
   def start_link(%Ladder{} = ladder) do
     GenServer.start_link(__MODULE__, ladder, name: __MODULE__)
+  end
+
+  def start_child(name) do
+    child_spec =
+      Supervisor.child_spec({Server, name}, id: name)
+      |> IO.inspect(label: "child_spec")
+
+    DynamicSupervisor.start_child(:dsup, child_spec)
   end
 
   def make_guess(word) do

@@ -10,6 +10,7 @@ defmodule WordLadder.Application do
     children = [
       # Starts a worker by calling: WordLadder.Worker.start_link(arg)
       # {WordLadder.Worker, arg}
+      {DynamicSupervisor, name: :dsup}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
