@@ -10,16 +10,22 @@ defmodule WordLadder.Server do
   alias WordLadder.Validator
 
   # Client API
+
   def start_link(%Ladder{} = ladder) do
     GenServer.start_link(__MODULE__, ladder, name: __MODULE__)
   end
 
+  def start_link({name, %Ladder{} = ladder}) do
+    IO.inspect(ladder, label: "ladder")
+    IO.inspect(name, label: "name")
+    GenServer.start_link(__MODULE__, ladder, name: name)
+  end
+
   def start_child(name) do
     child_spec =
-      Supervisor.child_spec({Server, name}, id: name)
-      |> IO.inspect(label: "child_spec")
+      Supervisor.child_spec({Server, {name, Ladder.new()}}, id: {Server, name})
 
-    DynamicSupervisor.start_child(:dsup, child_spec)
+    DynamicSupervisor.start_child(:dsup, {Server, {name, Ladder.new()}})
   end
 
   def make_guess(word) do
@@ -34,6 +40,7 @@ defmodule WordLadder.Server do
 
   @impl true
   def init(state) do
+    # IO.puts("Starting #{elem(state, 0)}...")
     {:ok, state}
   end
 
