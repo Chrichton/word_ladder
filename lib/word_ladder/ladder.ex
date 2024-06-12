@@ -12,17 +12,10 @@ defmodule WordLadder.Ladder do
         }
 
   alias WordLadder.Ladder
-
-  @words ~w(ants bear camel cats clam crow deer dogs duck frog goat hawk
-    mole mule newt owls rams rats seal stork swan toad wolf yaks)
+  alias WordLadder.Dictionary
 
   def new() do
-    start_word = random_word(@words)
-
-    end_word =
-      @words
-      |> Enum.reject(&(&1 == start_word))
-      |> random_word()
+    [start_word, _, end_word] = random_ladder(Dictionary.ladders())
 
     %Ladder{
       start_word: start_word,
@@ -40,9 +33,9 @@ defmodule WordLadder.Ladder do
   defp words(%Ladder{start_word: first, end_word: last, word_list: middle}),
     do: [first | Enum.reverse(middle)] ++ [last]
 
-  defp random_word(word_list) do
-    word_list
-    |> Stream.drop(:rand.uniform(Enum.count(word_list)) - 1)
+  defp random_ladder(ladders) do
+    ladders
+    |> Stream.drop(:rand.uniform(Enum.count(ladders)) - 1)
     |> Enum.take(1)
     |> hd()
   end

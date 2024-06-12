@@ -5,6 +5,7 @@ defmodule WordLadder do
 
   alias WordLadder.Ladder
   alias WordLadder.Server
+  alias WordLadder.Validator
 
   @spec start() :: tuple()
   def start() do
@@ -18,8 +19,14 @@ defmodule WordLadder do
         IO.puts(reason)
         IO.puts(show())
 
-      ladder ->
-        ladder
+      %Ladder{end_word: end_word} = ladder ->
+        if Validator.valid_move?(word, end_word) do
+          IO.puts("you won!")
+          IO.puts(Ladder.show(ladder))
+          stop()
+        else
+          ladder
+        end
     end
   end
 
@@ -27,6 +34,8 @@ defmodule WordLadder do
   def show() do
     Server.show()
   end
+
+  def stop(), do: GenServer.stop(Server, :normal)
 
   defp start_server(), do: Server.start_link(Ladder.new())
 end

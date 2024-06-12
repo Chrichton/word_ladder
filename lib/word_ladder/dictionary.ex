@@ -1,7 +1,23 @@
 defmodule WordLadder.Dictionary do
   alias WordLadder.Validator
 
+  @words ~w(ants bear camel cats clam crow deer dogs duck frog goat hawk
+    mole mule newt owls rams rats seal stork swan toad wolf yaks)
+
   @animals ~w(bass bear beef bird boar buff bull cape carp cavy chip coot crab crow dane deer dodo dove duck fawn frog gaur gerb goat gosh gull hare hawk hind ibis jenn kang kite koal kudu lamp lark lion lynx mare mink mola mole moth mule myna newt ogre oryx ostr otus paca pika pike pony puff puma quok rabb rhea rook sand seal shad sika skua swan tahr teal tern toad vole wasp wels weta wige wolf xema zebu)
+
+  @ladders [
+    ["mule", "mole", "mola"],
+    ["vole", "mole", "mola"],
+    ["mola", "mole", "mule"],
+    ["vole", "mole", "mule"],
+    ["sika", "pika", "pike"],
+    ["pike", "pika", "sika"],
+    ["mola", "mole", "vole"],
+    ["mule", "mole", "vole"]
+  ]
+
+  def ladders(), do: @ladders
 
   def generate_word_ladders() do
     for animal1 <- @animals,
