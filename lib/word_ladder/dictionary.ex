@@ -12,6 +12,12 @@ defmodule WordLadder.Dictionary do
     |> Enum.reject(&(&1 == []))
   end
 
+  def generate_word_ladders_comb() do
+    Combination.combine(@animals, 3)
+    |> Enum.map(&generate_word_ladder/1)
+    |> Enum.reject(&(&1 == []))
+  end
+
   defp generate_word_ladder([animal1, animal2, animal3] = animals) do
     if Enum.uniq(animals) == animals and
          Validator.valid_move?(animal1, animal2) and
