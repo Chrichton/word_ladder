@@ -1,0 +1,4 @@
+%{
+  "combination": {:hex, :combination, "0.0.3", "746aedca63d833293ec6e835aa1f34974868829b1486b1e1cb0685f0b2ae1f41", [:mix], [], "hexpm", "72b099f463df42ef7dc6371d250c7070b57b6c5902853f69deb894f79eda18ca"},
+  "combinatorics": {:hex, :combinatorics, "0.1.0", "88c870a34196ff32243180c6abdc947c57877b35915d5f0a444f3f052aa27134", [:mix], [], "hexpm", "81f54a189887ce536decad76fde62f87abdcd4b64bcd0cec7b72a5995f2d36fa"},
+}

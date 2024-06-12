@@ -1,7 +1,7 @@
 defmodule WordLadder.Dictionary do
   alias WordLadder.Validator
 
-  @animals ~w("bass bear beef bird boar buff bull cape carp cavy chip coot crab crow dane deer dodo dove duck fawn frog gaur gerb goat gosh gull hare hawk hind ibis jenn kang kite koal kudu lamp lark lion lynx mare mink mola mole moth mule myna newt ogre oryx ostr otus paca pika pike pony puff puma quok rabb rhea rook sand seal shad sika skua swan tahr teal tern toad vole wasp wels weta wige wolf xema zebu")
+  @animals ~w(bass bear beef bird boar buff bull cape carp cavy chip coot crab crow dane deer dodo dove duck fawn frog gaur gerb goat gosh gull hare hawk hind ibis jenn kang kite koal kudu lamp lark lion lynx mare mink mola mole moth mule myna newt ogre oryx ostr otus paca pika pike pony puff puma quok rabb rhea rook sand seal shad sika skua swan tahr teal tern toad vole wasp wels weta wige wolf xema zebu)
 
   def generate_word_ladders() do
     for animal1 <- @animals,
@@ -22,7 +22,7 @@ defmodule WordLadder.Dictionary do
     end
   end
 
-  def words(), do: @animals |> MapSet.new()
+  def words(), do: @animals
 
   def words_from_file() do
     "deutsch.txt"
@@ -32,4 +32,6 @@ defmodule WordLadder.Dictionary do
     |> Stream.filter(&(String.length(&1) == 4))
     |> Enum.to_list()
   end
+
+  # Combination.combine(WordLadder.Dictionary.words, 3)
 end
